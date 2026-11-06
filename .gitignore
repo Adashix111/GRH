@@ -1,0 +1,9 @@
+# Fichiers système (Mac, Windows)
+.DS_Store
+Thumbs.db
+
+# Outil d'aperçu local (pas utile en ligne)
+.claude/
+
+# Journaux
+*.log
