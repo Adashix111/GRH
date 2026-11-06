@@ -1835,6 +1835,18 @@ body.est-connecte .pied { margin-left: var(--largeur-menu); }
   .ruban__texte strong { font-size: 11px; }
 }
 
+/* Petits téléphones (375 px et moins) : un peu plus de place pour les tableaux */
+@media (max-width: 380px) {
+  .contenu { padding-left: 12px; padding-right: 12px; }
+  .carte { padding: 14px 12px; }
+  .tableau-donnees--ouvert .tableau,
+  .tableau-donnees--ouvert .tableau.tableau--competences,
+  #tableau-hypotheses .tableau,
+  #tableau-scenarios .tableau { font-size: 11.5px; }
+  .tableau-donnees--ouvert .tableau th,
+  .tableau-donnees--ouvert .tableau td { padding: 7px 3px; }
+}
+
 /* Méthodologie : la chaîne passe à la verticale sur petit écran */
 @media (max-width: 1199px) {
   .grille-sources { grid-template-columns: repeat(3, minmax(0, 1fr)); }
