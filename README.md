@@ -26,7 +26,6 @@ Encadré par Pr. Fatima Ezzahra Siragi.
 | Risque de départ (IA explicable) | Prédictif |
 | Compétences de demain | Prédictif |
 | Plan d'action GPEC | Prescriptif |
-| Méthodologie & éthique | Méthode |
 
 ## La méthode (formule du TD)
 

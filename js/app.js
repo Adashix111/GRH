@@ -213,7 +213,6 @@
     { id: 'risque', titre: 'Risque de départ', niveau: 'predictif', rendu: rendreRisque },
     { id: 'competences', titre: 'Compétences de demain', niveau: 'predictif', rendu: rendreCompetences },
     { id: 'plan-action', titre: "Plan d'action GPEC", niveau: 'prescriptif', rendu: rendrePlanAction },
-    { id: 'methodologie', titre: 'Méthodologie & éthique', niveau: 'methode', rendu: rendreMethodologie },
   ];
   const NOM_SITE = 'Portail RH · TECHNOVA INDUSTRIE SA';
 
@@ -287,8 +286,11 @@
 
   function appliquerAdresse() {
     const page = pageDepuisAdresse();
-    if (page) afficherPortail(page);
-    else afficherConnexion();
+    if (page) return afficherPortail(page);
+    // Ancien lien vers une page qui n'existe plus : retour au tableau de bord
+    const cle = (location.hash || '').replace(/^#\/?/, '');
+    if (cle && cle !== 'connexion') return location.replace('#vue-ensemble');
+    afficherConnexion();
   }
 
   function afficherConnexion() {
@@ -555,7 +557,31 @@
     ]);
 
     rendreFaitsMarquants();
+    rendrePlanStrategique();
     graphiquesVueEnsemble();
+  }
+
+  // Plan « Industrie 4.0 » : effectif 2025 → besoins 2028 (scénario central) pour chaque projet
+  function rendrePlanStrategique() {
+    const p = RH.prevoir('central');
+    const projets = [
+      { id: 'agents', icone: 'ico-robot', projet: 'Automatisation de deux lignes d\u2019assemblage' },
+      { id: 'techniciens', icone: 'ico-outil', projet: 'Offre de maintenance prédictive' },
+      { id: 'cadres', icone: 'ico-ampoule', projet: 'Cellule « Innovation et transformation digitale »' },
+    ];
+    const liste = $('#plan-strategique');
+    liste.textContent = '';
+    projets.forEach((x) => {
+      const s = p.categories[x.id];
+      const variation = s.besoin2028 - s.effectif2025;
+      const element = doc.createElement('li');
+      element.innerHTML = '<span class="plan-strategique__icone" aria-hidden="true"><svg class="icone"><use href="#' + x.icone + '"></use></svg></span>' +
+        '<span class="plan-strategique__texte"><strong></strong><span class="plan-strategique__projet"></span></span><span class="variation"></span>';
+      $('strong', element).textContent = categorieRH(x.id).nom + ' : ' + fmt.entier(s.effectif2025) + ' → ' + fmt.entier(s.besoin2028);
+      $('.plan-strategique__projet', element).textContent = x.projet;
+      $('.variation', element).textContent = fmt.signe(variation);
+      liste.appendChild(element);
+    });
   }
 
   function graphiquesVueEnsemble() {
@@ -1274,7 +1300,7 @@
         '<div class="jauge__legende"><span>0</span><span>moyen dès ' + RH.seuilsRisque.moyen + ' · élevé dès ' + RH.seuilsRisque.eleve + '</span><span>100</span></div>' +
       '</div>' +
       '<h3 class="detail__sous-titre">Pourquoi ce score&nbsp;? <small>IA explicable</small></h3>' +
-      '<p class="detail__base">Point de départ&nbsp;: ' + RH.scoreBase + ' points (score de référence). Chaque facteur ajoute (+) ou retire (−) des points.</p>' +
+      '<p class="detail__base">Base ' + RH.scoreBase + ' points, puis contribution de chaque facteur.</p>' +
       '<ul class="facteurs"></ul>' +
       '<p class="detail__resume"></p>' +
       '<p class="detail__note"><svg class="icone" aria-hidden="true"><use href="#ico-bouclier"></use></svg>' +
@@ -1343,9 +1369,8 @@
     // Le chiffre clé du TD : techniciens maîtrisant la robotique
     const robotique = competences.find((c) => c.nom === 'Robotique');
     $('#chiffre-cle-valeur').textContent = fmt.entier(robotique.maitrisants2025) + ' → ' + fmt.entier(robotique.requis2028);
-    $('#chiffre-cle-calcul').innerHTML =
-      '2025&nbsp;: ' + echapper(fmt.entier(robotique.effectif2025)) + ' × ' + echapper(fmt.pourcentage(robotique.maitrise2025, 0)) + ' = ' + echapper(fmt.entier(robotique.maitrisants2025)) +
-      '<br>2028&nbsp;: ' + echapper(fmt.entier(robotique.besoin2028)) + ' × ' + echapper(fmt.pourcentage(robotique.objectif2028, 0)) + ' = ' + echapper(fmt.entier(robotique.requis2028));
+    $('#chiffre-cle-calcul').textContent = fmt.pourcentage(robotique.maitrise2025, 0) + ' des ' + fmt.entier(robotique.effectif2025) +
+      ' techniciens en 2025 · objectif ' + fmt.pourcentage(robotique.objectif2028, 0) + ' des ' + fmt.entier(robotique.besoin2028) + ' en 2028';
     $('#chiffre-cle-conclusion').textContent = robotique.aFormer + ' techniciens de plus à former ou recruter en robotique';
     $('#sous-titre-competences').textContent = 'Part des salariés de chaque catégorie qui maîtrisent la compétence · besoins 2028 du scénario ' + p.scenario.nom.toLowerCase();
 
@@ -1593,55 +1618,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     13. PAGE « MÉTHODOLOGIE & ÉTHIQUE »
-     ------------------------------------------------------------------------ */
-  const pourcentageSigne = (x) => (x > 0 ? '+' : x < 0 ? '−' : '') + fmt.pourcentage(Math.abs(x * 100), 0);
-
-  function rendreMethodologie() {
-    const central = RH.prevoir('central', etat.ageRetraite);
-
-    placer('tableau-hypotheses', tableauHTML(
-      'Hypothèses du TD par catégorie',
-      ['Catégorie', { noeud: libelleDouble('Effectif 2025', '2025') }, { noeud: libelleDouble('Retraites 2026–2028', 'Retr.') },
-        { noeud: libelleDouble('Taux de démission', 'Dém.') }, { noeud: libelleDouble('Mobilité', 'Mob.') }, { noeud: libelleDouble('Besoins 2028', 'Besoins') }],
-      ORDRE_CATEGORIES.map((id) => {
-        const c = categorieRH(id);
-        const s = central.categories[id];
-        return [{ noeud: libelleDouble(c.nom, c.court) }, fmt.entier(s.effectif2025), fmt.entier(s.totalRetraites),
-          fmt.pourcentage(c.tauxDemission, c.tauxDemission % 1 ? 1 : 0) + '/an', s.totalMobilite ? fmt.signe(s.totalMobilite) : '0', fmt.entier(c.besoin2028)];
-      })
-    ));
-
-    placer('tableau-scenarios', tableauHTML(
-      'Les trois scénarios',
-      ['Scénario', { noeud: libelleDouble('Croissance', 'Croiss.') }, { noeud: libelleDouble('Automatisation', 'Autom.') },
-        { noeud: libelleDouble('Besoins 2028', 'Besoins') }, { noeud: libelleDouble('Écart 2028', 'Écart') }],
-      Object.keys(RH.scenarios).map((id) => {
-        const sc = RH.scenarios[id];
-        const p = RH.prevoir(id, etat.ageRetraite);
-        return [sc.nom, pourcentageSigne(sc.croissance) + '/an', fmt.pourcentage(sc.rythmeAutomatisation * 100, 0),
-          fmt.entier(p.total.besoin2028), { noeud: creerStatut(p.total.ecart2028) }];
-      })
-    ));
-
-    $('#texte-score').textContent = 'Score = ' + RH.scoreBase + ' points de base + les points de chaque facteur, entre 0 et 100. Risque élevé dès ' +
-      RH.seuilsRisque.eleve + ', moyen dès ' + RH.seuilsRisque.moyen + '. Chaque point est visible sur la page « Risque de départ ».';
-    const regles = [
-      ['Ancienneté', 'moins de 2 ans : +12 · 2 à 5 ans : +7 · 5 à 10 ans : 0 · plus de 10 ans : −6'],
-      ['Écart salaire / marché', '+1,2 point par % sous le marché (au plus +22) · au-dessus du marché : jusqu’à −8'],
-      ['Dernière augmentation', 'plus de 24 mois : +14 · 13 à 24 mois : +6 · 12 mois ou moins : −4'],
-      ['Évaluation annuelle', '2/5 ou moins : +10 · 3/5 : +3 · 4/5 : 0 · 5/5 : −2'],
-      ['Formations suivies (2 ans)', 'aucune : +8 · une : +3 · deux : 0 · trois ou plus : −5'],
-      ['Absentéisme', 'plus de 8 % : +10 · 5 à 8 % : +5 · 2 à 5 % : 0 · moins de 2 % : −3'],
-    ];
-    const table = tableauHTML('Règles de calcul du score de risque', ['Facteur', 'Règle de calcul (points)'],
-      regles.map((r) => [r[0], { texte: r[1].replace(/ %/g, ESPACE_FINE + '%').replace(/ : /g, ESPACE + ': ') }]));
-    table.classList.add('tableau--regles');
-    placer('tableau-score', table);
-  }
-
-  /* ------------------------------------------------------------------------
-     14. Démarrage
+     13. Démarrage
      ------------------------------------------------------------------------ */
   if (window.Chart) configurerChartJs();
   construireElementsCommuns();

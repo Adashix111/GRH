@@ -176,8 +176,6 @@
       <p class="menu-groupe">Recommandations</p>
       <a class="menu-lien" href="#plan-action" data-lien="plan-action"><svg class="icone" aria-hidden="true"><use href="#ico-cible"></use></svg>Plan d'action GPEC</a>
 
-      <p class="menu-groupe">Documentation</p>
-      <a class="menu-lien" href="#methodologie" data-lien="methodologie"><svg class="icone" aria-hidden="true"><use href="#ico-bouclier"></use></svg>Méthodologie &amp; éthique</a>
     </nav>
 
     <p class="menu-lateral__bas">Données RH au 31/12/2025<br>Plan «&nbsp;Industrie 4.0&nbsp;» 2026–2028</p>
@@ -281,22 +279,9 @@
           <article class="carte col-6">
             <div>
               <h2 class="carte__titre">Plan «&nbsp;Industrie 4.0&nbsp;» 2026–2028</h2>
-              <p class="carte__sous-titre">Impacts RH attendus</p>
+              <p class="carte__sous-titre">Besoins par catégorie&nbsp;: effectif 2025 → besoins 2028</p>
             </div>
-            <ul class="plan-strategique plan-strategique--colonne">
-              <li>
-                <span class="plan-strategique__icone" aria-hidden="true"><svg class="icone"><use href="#ico-robot"></use></svg></span>
-                <span><strong>Automatisation de deux lignes d'assemblage</strong><span>→ Moins de besoins en agents d'exécution</span></span>
-              </li>
-              <li>
-                <span class="plan-strategique__icone" aria-hidden="true"><svg class="icone"><use href="#ico-outil"></use></svg></span>
-                <span><strong>Offre de maintenance prédictive</strong><span>→ Plus de techniciens en robotique et données</span></span>
-              </li>
-              <li>
-                <span class="plan-strategique__icone" aria-hidden="true"><svg class="icone"><use href="#ico-ampoule"></use></svg></span>
-                <span><strong>Cellule «&nbsp;Innovation et transformation digitale&nbsp;»</strong><span>→ Cadres formés au management agile et à l'IA</span></span>
-              </li>
-            </ul>
+            <ul class="plan-strategique plan-strategique--colonne" id="plan-strategique"></ul>
           </article>
         </div>
       </section>
@@ -363,7 +348,7 @@
           <article class="carte col-12" data-onglet="Bilan 2028">
             <h2 class="carte__titre">Effectif disponible au 31/12/2028</h2>
             <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-flux"></div>
-            <p class="formule"><strong>Effectif disponible</strong> = Effectif 2025 − Retraites − Démissions ± Mobilité interne</p>
+            <p class="note-calcul">Disponible 2028 = effectif 2025 − retraites − démissions ± mobilité interne.</p>
           </article>
 
           <article class="carte col-6" data-onglet="Retraites">
@@ -497,100 +482,8 @@
         </article>
 
         <details class="carte repli carte--espace" data-repli-mobile open>
-          <summary class="carte__titre">De l'écart à l'action</summary>
+          <summary class="carte__titre">Synthèse par catégorie</summary>
           <div class="ecarts-actions" id="ecarts-actions"></div>
-        </details>
-      </section>
-
-      <!-- ---------------------------------------------------------------
-           MÉTHODOLOGIE & ÉTHIQUE
-           --------------------------------------------------------------- -->
-      <section class="page" id="page-methodologie" data-page="methodologie" aria-labelledby="titre-methodologie" hidden>
-        <header class="entete-page">
-          <div class="entete-page__ligne">
-            <h1 class="titre-page" id="titre-methodologie" tabindex="-1">Méthodologie &amp; éthique</h1>
-            <span data-badge></span>
-          </div>
-          <p class="entete-page__meta">Comment les prévisions sont produites, leurs limites et les règles de conformité</p>
-        </header>
-
-        <details class="carte repli" data-repli-mobile data-ouvert-mobile open>
-          <summary class="carte__titre">Le parcours de la donnée</summary>
-          <ol class="pipeline">
-            <li class="pipeline__etape">
-              <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-base"></use></svg></span>
-              <strong>Données RH</strong>
-              <span>SIRH, paie, évaluations, formations, entretiens de sortie</span>
-            </li>
-            <li class="pipeline__etape">
-              <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-filtre"></use></svg></span>
-              <strong>Nettoyage</strong>
-              <span>Doublons, valeurs manquantes et erreurs corrigés</span>
-            </li>
-            <li class="pipeline__etape">
-              <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-calcul"></use></svg></span>
-              <strong>Modèle prédictif</strong>
-              <span>Calcul des flux, scénarios, score de risque explicable</span>
-            </li>
-            <li class="pipeline__etape">
-              <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-courbe"></use></svg></span>
-              <strong>Prévisions</strong>
-              <span>Effectif disponible, besoins, écarts 2028, alertes</span>
-            </li>
-            <li class="pipeline__etape pipeline__etape--humaine">
-              <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-personne"></use></svg></span>
-              <strong>Décision RH (humaine)</strong>
-              <span>Le DRH et les managers choisissent le plan d'action</span>
-            </li>
-          </ol>
-        </details>
-
-        <details class="carte repli carte--espace" data-repli-mobile open>
-          <summary class="carte__titre">Sources des données</summary>
-          <ul class="grille-sources">
-            <li class="source"><strong>SIRH</strong><span>Effectifs, catégories, âges, ancienneté, sexe</span></li>
-            <li class="source"><strong>Paie</strong><span>Salaires, augmentations, masse salariale</span></li>
-            <li class="source"><strong>Évaluations annuelles</strong><span>Performance et potentiel des salariés</span></li>
-            <li class="source"><strong>Formations</strong><span>Formations suivies, compétences acquises</span></li>
-            <li class="source"><strong>Entretiens de sortie</strong><span>Motifs de départ&nbsp;: ils nourrissent le score de risque</span></li>
-          </ul>
-          <p class="carte__sous-titre">Données agrégées issues du cas TECHNOVA (TD du module GRH, ENCG Settat)&nbsp;; le détail individuel, l'absentéisme, l'ancienneté, la formation, la masse salariale et les 15 salariés suivis sont simulés.</p>
-        </details>
-
-        <details class="carte repli carte--espace" data-repli-mobile open>
-          <summary class="carte__titre">Le modèle de prévision</summary>
-          <h3 class="sous-titre-section">Hypothèses par catégorie</h3>
-          <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-hypotheses"></div>
-          <p class="formule"><strong>Effectif disponible</strong> = Effectif 2025 − Retraites − Démissions ± Mobilité interne. <strong>Écart</strong> = Disponible − Besoins.</p>
-          <h3 class="sous-titre-section">Les trois scénarios</h3>
-          <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-scenarios"></div>
-          <p class="carte__sous-titre">Le scénario central reprend les besoins du plan stratégique. Les deux autres font varier la croissance de l'activité et le rythme d'automatisation.</p>
-        </details>
-
-        <details class="carte repli carte--espace" data-repli-mobile open>
-          <summary class="carte__titre">Le score de risque de départ (IA explicable)</summary>
-          <p class="carte__sous-titre" id="texte-score"></p>
-          <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-score"></div>
-        </details>
-
-        <details class="carte repli carte--espace" data-repli-mobile open>
-          <summary class="carte__titre">Les limites</summary>
-          <ul class="grille-principes">
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-base"></use></svg></span><strong>Qualité des données</strong><span>Des données incomplètes ou fausses donnent des prévisions fausses.</span></li>
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-egal"></use></svg></span><strong>Biais</strong><span>Un modèle appris sur le passé peut reproduire des inégalités passées.</span></li>
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-alerte"></use></svg></span><strong>Une prédiction n'est pas une certitude</strong><span>D'où les scénarios&nbsp;: on raisonne en fourchettes.</span></li>
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-rotation"></use></svg></span><strong>Actualiser le modèle</strong><span>Chaque année, on compare le prévu et le réalisé.</span></li>
-          </ul>
-        </details>
-
-        <details class="carte repli carte--espace" data-repli-mobile open>
-          <summary class="carte__titre">Éthique et conformité</summary>
-          <ul class="grille-principes grille-principes--ethique">
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-cadenas"></use></svg></span><strong>Protection des données personnelles</strong><span>Loi 09-08&nbsp;: traitement déclaré à la CNDP, données limitées au nécessaire, sécurisées et conservées pour une durée limitée.</span></li>
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-info"></use></svg></span><strong>Transparence envers les salariés</strong><span>Information sur l'outil et sa finalité&nbsp;; droit d'accès, de rectification et d'opposition.</span></li>
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-personne"></use></svg></span><strong>Pas de décision 100&nbsp;% automatisée</strong><span>L'algorithme propose, l'humain décide&nbsp;: entretien individuel, possibilité de contester.</span></li>
-            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-bouclier"></use></svg></span><strong>Non-discrimination</strong><span>Le score n'utilise ni le sexe, ni l'âge, ni la situation familiale, ni la santé.</span></li>
-          </ul>
         </details>
       </section>
 

@@ -2318,3 +2318,19 @@ details.repli:not([open]) { gap: 0; }
   #tableau-scenarios .tableau th,
   #tableau-scenarios .tableau td { padding: 6px 2px; }
 }
+
+/* Données plutôt qu'explications : note de calcul discrète, plan Industrie 4.0 en chiffres */
+.note-calcul { font-size: 13px; color: var(--gris); }
+.plan-strategique li { align-items: center; }
+.plan-strategique__texte { flex: 1; min-width: 0; }
+.plan-strategique__projet { display: block; font-size: 13px; color: var(--gris); }
+.variation {
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--bleu-pale);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--bleu-fonce);
+  white-space: nowrap;
+}
