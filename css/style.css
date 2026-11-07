@@ -1965,3 +1965,356 @@ body.est-connecte .pied { margin-left: var(--largeur-menu); }
   #tableau-flux .tableau td { padding-left: 4px; padding-right: 4px; }
   .tableau-donnees--ouvert .col-part { display: none; }
 }
+
+/* ==========================================================================
+   VERSION « PORTAIL D'ENTREPRISE » : en-têtes compacts, étiquettes de module,
+   navigation d'application sur téléphone (onglets, sections repliables,
+   barre du bas, fiche salarié en volet).
+   ========================================================================== */
+
+/* En-tête de page compact : on arrive directement sur les indicateurs */
+.entete-page { margin-bottom: 16px; }
+.entete-page__ligne {
+  justify-content: flex-start;
+  gap: 8px 12px;
+  margin-bottom: 0;
+}
+.titre-page { font-size: clamp(22px, 2.1vw, 28px); }
+.entete-page__meta {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--gris);
+}
+
+/* Étiquette du module (descriptif, prédictif, prescriptif) */
+.module {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--bleu-100);
+  border-radius: 999px;
+  background: var(--bleu-pale);
+  color: var(--bleu-fonce);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.module .icone { width: 14px; height: 14px; }
+.module--predictif { background: var(--bleu-fonce); border-color: var(--bleu-fonce); color: var(--blanc); }
+.module--prescriptif { background: var(--bleu-moyen); border-color: var(--bleu-moyen); color: var(--blanc); }
+
+/* Barre du haut : fil d'Ariane et cloche des alertes */
+.fil-ariane {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: var(--gris);
+}
+.fil-ariane .icone { width: 14px; height: 14px; }
+.fil-ariane strong { color: var(--bleu-fonce); }
+.notification {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 10px;
+  color: var(--bleu-fonce);
+  transition: background-color var(--transition);
+}
+.notification:hover { background: var(--bleu-pale); }
+.notification .icone { width: 22px; height: 22px; }
+.notification__nombre {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  display: grid;
+  place-items: center;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  border: 2px solid var(--blanc);
+  border-radius: 10px;
+  background: var(--rouge);
+  color: var(--blanc);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Écran de connexion : atouts du portail */
+.atouts {
+  display: grid;
+  gap: 10px;
+  max-width: 440px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.atouts li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--bleu-moyen);
+}
+.atouts__icone {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--blanc);
+  color: var(--bleu-fonce);
+}
+.atouts__icone .icone { width: 18px; height: 18px; }
+.atouts strong { display: block; font-size: 16px; }
+.atouts__detail { display: block; font-size: 14px; color: rgba(255, 255, 255, 0.8); }
+
+/* Vue d'ensemble : trois graphiques côte à côte */
+.col-4 .zone-graphique { height: 270px; }
+.plan-strategique--colonne { grid-template-columns: 1fr; gap: 8px; }
+.plan-strategique--colonne li { padding: 10px 12px; font-size: 14px; }
+.plan-strategique--colonne .plan-strategique__icone { width: 34px; height: 34px; }
+.carte--espace { margin-top: 16px; }
+
+/* Hypothèses repliables dans la barre de filtres */
+.hypotheses { flex: 1 1 300px; min-width: 0; }
+.hypotheses > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gris);
+}
+.hypotheses > summary::-webkit-details-marker { display: none; }
+.hypotheses > summary::before { content: "▸ "; }
+.hypotheses[open] > summary::before { content: "▾ "; }
+.hypotheses .filtre__hypotheses { margin-top: 4px; }
+
+/* Sections repliables (cartes) */
+details.repli > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+details.repli > summary::-webkit-details-marker { display: none; }
+details.repli > summary::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin: 0 6px 4px auto;
+  border-right: 2px solid var(--bleu-fonce);
+  border-bottom: 2px solid var(--bleu-fonce);
+  transform: rotate(45deg);
+  transition: transform var(--transition);
+}
+details.repli[open] > summary::after { transform: rotate(-135deg); margin-bottom: -4px; }
+details.repli:not([open]) { gap: 0; }
+.sous-titre-section { margin-top: 4px; font-size: 15px; font-weight: 800; }
+
+/* Chiffre clé des compétences : bandeau horizontal */
+.chiffre-cle {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 28px;
+  margin-bottom: 16px;
+  padding: 18px 24px;
+  text-align: left;
+}
+.chiffre-cle__valeur { font-size: clamp(32px, 3.4vw, 46px); }
+.chiffre-cle__conclusion { margin-top: 0; max-width: 26ch; }
+
+/* Onglets (téléphone) : barre cachée sur grand écran */
+.onglets__barre { display: none; }
+.bouton-plus { display: none; margin: 4px 0 0 -8px; }
+.detail__fermer { display: none; margin-left: auto; color: var(--bleu-fonce); }
+.detail__fermer:hover { background: var(--bleu-pale); }
+.nav-mobile { display: none; }
+
+@media (max-width: 1199px) {
+  .col-4 .zone-graphique { height: 300px; }
+}
+
+@media (max-width: 900px) {
+  .grille-synthese { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .chiffre-cle { grid-template-columns: 1fr; gap: 6px; text-align: center; }
+  .chiffre-cle__conclusion { max-width: none; }
+
+  /* Plan d'action : une carte compacte par action */
+  .tableau--plan tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+    padding: 12px 2px;
+  }
+  .tableau--plan th { flex: 1 1 100%; padding: 0 0 2px; }
+  .tableau--plan td { width: auto; padding: 0; font-size: 13px; }
+  .tableau--plan td[data-libelle]::before { content: none; }
+  .tableau--plan td.meta {
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--bleu-pale);
+    font-weight: 600;
+  }
+  .tableau--plan td.effectif { font-size: 14px; }
+  .tableau--plan td.effectif::after { content: " pers."; font-size: 12px; font-weight: 600; color: var(--gris); }
+  .tableau--plan td.responsable { flex: 1 1 100%; font-size: 12px; color: var(--gris); }
+}
+
+@media (max-width: 640px) {
+  /* En-tête de page et barre du haut */
+  .entete-page { margin-bottom: 12px; }
+  .titre-page { font-size: 21px; }
+  .entete-page__meta { font-size: 13px; }
+  .fil-ariane { display: none; }
+  .notification { width: 36px; height: 36px; }
+
+  /* Onglets : un seul graphique ou tableau à la fois */
+  .onglets__barre {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+    padding: 4px;
+    overflow-x: auto;
+    border-radius: 12px;
+    background: var(--bleu-pale);
+  }
+  .onglets__barre button {
+    flex: 1 0 auto;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--bleu-fonce);
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .onglets__barre button[aria-selected="true"] { background: var(--bleu-fonce); color: var(--blanc); }
+  [data-onglets] > .onglet-inactif { display: none !important; }
+
+  /* Indicateurs plus compacts */
+  .grille-kpi { gap: 8px; }
+  .kpi { gap: 2px; padding: 11px 12px; }
+  .kpi__valeur { font-size: 24px; }
+  .kpi__detail { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+  /* Tuiles de synthèse : sur une ligne */
+  .grille-synthese,
+  .grille-synthese.grille-synthese--4 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  #synthese-risque.grille-synthese { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #synthese-plan.grille-synthese { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .synthese { gap: 2px; padding: 10px; }
+  .synthese__libelle { font-size: 11px; line-height: 1.25; }
+  .synthese__valeur { font-size: 22px; }
+  .synthese__valeur .statut,
+  .synthese__detail { display: none; }
+
+  /* Alertes : les 3 premières, puis « Voir toutes les alertes » */
+  .liste-alertes.est-reduite > li:nth-child(n + 4) { display: none; }
+  .bouton-plus { display: inline-flex; }
+
+  /* Fiche salarié : volet qui monte du bas de l'écran */
+  .risque__detail {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    max-height: 86vh;
+    overflow-y: auto;
+    padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -10px 40px rgba(11, 37, 69, 0.3);
+    transform: translateY(105%);
+    visibility: hidden;
+    transition: transform 0.28s ease, visibility 0s linear 0.28s;
+  }
+  .risque__detail.est-ouvert {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.28s ease, visibility 0s;
+  }
+  .voile--detail { z-index: 45; }
+  body.feuille-ouverte { overflow: hidden; }
+  .detail__fermer { display: inline-flex; }
+
+  /* Barre de navigation en bas, comme une application */
+  .nav-mobile {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--bleu-100);
+    background: var(--blanc);
+    box-shadow: 0 -4px 16px rgba(11, 37, 69, 0.06);
+  }
+  .nav-mobile a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 2px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--gris);
+  }
+  .nav-mobile a .icone { width: 22px; height: 22px; }
+  .nav-mobile a.est-actif { background: var(--bleu-pale); color: var(--bleu-fonce); }
+  body.est-connecte { padding-bottom: calc(66px + env(safe-area-inset-bottom)); }
+
+  .tableau--plan .action__detail { display: none; }
+  .carte--espace { margin-top: 12px; }
+}
+
+/* Bouton « voir les données » sous forme d'icône (graphiques de la vue d'ensemble) */
+.carte__entete > div { flex: 1 1 160px; }
+.bouton-donnees { width: 34px; height: 34px; flex: none; border-radius: 8px; color: var(--bleu-fonce); }
+.bouton-donnees .icone { width: 18px; height: 18px; }
+.bouton-donnees:hover,
+.bouton-donnees[aria-expanded="true"] { background: var(--blanc); }
+.col-4 .zone-graphique { height: 260px; }
+
+/* Plan d'action sur téléphone : cartes plus courtes */
+@media (max-width: 900px) {
+  .tableau--plan td { min-width: 0; line-height: 1.3; }
+  .tableau--plan tr { gap: 6px; padding: 10px 2px; }
+  .tableau--plan .priorite { padding: 3px 8px; font-size: 12px; }
+  .tableau--plan .action__titre { font-size: 14px; }
+}
+
+/* Plan d'action sur téléphone : les actions prioritaires d'abord */
+@media (max-width: 640px) {
+  .tableau--plan.est-reduit[data-visibles="4"] tbody tr:nth-child(n + 5),
+  .tableau--plan.est-reduit[data-visibles="3"] tbody tr:nth-child(n + 4),
+  .tableau--plan.est-reduit[data-visibles="5"] tbody tr:nth-child(n + 6) { display: none; }
+}
+
+/* Très petits téléphones (360 px) : deux tableaux un peu plus serrés */
+@media (max-width: 360px) {
+  #tableau-flux .tableau,
+  #tableau-scenarios .tableau { font-size: 10.5px; }
+  #tableau-flux .tableau th,
+  #tableau-flux .tableau td,
+  #tableau-scenarios .tableau th,
+  #tableau-scenarios .tableau td { padding: 6px 2px; }
+}

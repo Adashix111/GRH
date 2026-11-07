@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Portail RH — TECHNOVA INDUSTRIE SA</title>
-  <meta name="description" content="Démo pédagogique (module GRH, ENCG Settat) : l'analyse prédictive comme outil de GPEC, appliquée au cas TECHNOVA INDUSTRIE SA. Entreprise et données fictives.">
+  <meta name="description" content="Portail RH de TECHNOVA INDUSTRIE SA (entreprise fictive) : tableaux de bord, analyses prédictives et plan d'action GPEC. Projet du module GRH, ENCG Settat.">
   <meta name="robots" content="noindex">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#0B2545">
@@ -43,6 +43,7 @@
   <symbol id="ico-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
   <symbol id="ico-fleche" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="ico-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="ico-chevron-bas" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
   <symbol id="ico-graphique" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></symbol>
   <symbol id="ico-alerte" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
   <symbol id="ico-fleche-haut" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
@@ -55,10 +56,13 @@
   <symbol id="ico-robot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6M2 13v3M22 13v3"/></symbol>
   <symbol id="ico-outil" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
   <symbol id="ico-calcul" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></symbol>
+  <symbol id="ico-tableau" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></symbol>
+  <symbol id="ico-cloche" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+  <symbol id="ico-livre" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
 </svg>
 
 <noscript>
-  <p class="sans-javascript">Ce portail de démonstration a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur puis rechargez la page.</p>
+  <p class="sans-javascript">Ce portail a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur puis rechargez la page.</p>
 </noscript>
 
 <!-- =====================================================================
@@ -76,17 +80,17 @@
       </div>
 
       <div class="connexion__accroche">
-        <p class="connexion__titre-marque">Anticiper les emplois et les compétences de demain</p>
-        <p class="connexion__texte">Plan «&nbsp;Industrie 4.0&nbsp;» 2026–2028&nbsp;: votre SIRH prédictif au service de la GPEC, de l'analyse des données RH aux décisions.</p>
+        <p class="connexion__titre-marque">Pilotez les emplois et les compétences de demain</p>
+        <p class="connexion__texte">Le portail RH de TECHNOVA INDUSTRIE SA&nbsp;: tableaux de bord, analyses prédictives et plan d'action GPEC.</p>
       </div>
 
-      <ol class="niveaux-apercu">
-        <li><span class="niveaux-apercu__num">1</span><span><strong>Descriptif</strong><span class="niveaux-apercu__question">Que s'est-il passé&nbsp;?</span></span></li>
-        <li><span class="niveaux-apercu__num">2</span><span><strong>Prédictif</strong><span class="niveaux-apercu__question">Que va-t-il se passer&nbsp;?</span></span></li>
-        <li><span class="niveaux-apercu__num">3</span><span><strong>Prescriptif</strong><span class="niveaux-apercu__question">Que faire&nbsp;? Le plan d'action GPEC</span></span></li>
-      </ol>
+      <ul class="atouts">
+        <li><span class="atouts__icone" aria-hidden="true"><svg class="icone"><use href="#ico-graphique"></use></svg></span><span><strong>Tableaux de bord RH</strong><span class="atouts__detail">Effectifs, âges, turnover, masse salariale</span></span></li>
+        <li><span class="atouts__icone" aria-hidden="true"><svg class="icone"><use href="#ico-courbe"></use></svg></span><span><strong>Analyses prédictives</strong><span class="atouts__detail">Prévisions 2026–2028, alertes, risque de départ</span></span></li>
+        <li><span class="atouts__icone" aria-hidden="true"><svg class="icone"><use href="#ico-cible"></use></svg></span><span><strong>Plan d'action GPEC</strong><span class="atouts__detail">Recrutement, formation, mobilité, succession</span></span></li>
+      </ul>
 
-      <p class="connexion__site">1 200 salariés · 3 catégories · horizon 2028</p>
+      <p class="connexion__site">TECHNOVA INDUSTRIE SA · Direction des Ressources Humaines</p>
 
       <svg class="connexion__montagnes" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
         <path d="M20 160V96h44v64zM84 160V60h44v100zM148 160V112h44v48zM212 160V40h44v120zM276 160V84h44v76zM340 160V20h44v140zM404 160V70h44v90zM468 160V100h44v60zM532 160V52h44v108z"/>
@@ -104,11 +108,11 @@
         </div>
 
         <div>
-          <h1 id="titre-connexion" class="carte-connexion__titre">Portail RH — TECHNOVA INDUSTRIE SA</h1>
-          <p class="carte-connexion__sous-titre">Espace de la Direction des Ressources Humaines</p>
+          <h1 id="titre-connexion" class="carte-connexion__titre">Portail RH</h1>
+          <p class="carte-connexion__sous-titre">Direction des Ressources Humaines — TECHNOVA INDUSTRIE SA</p>
         </div>
 
-        <!-- Formulaire de démonstration : rien n'est lu, enregistré ni envoyé. -->
+        <!-- Connexion simulée : rien n'est lu, enregistré ni envoyé. -->
         <form id="formulaire-connexion" class="formulaire" autocomplete="off" novalidate>
           <div class="champ">
             <label for="champ-email">Adresse e-mail professionnelle</label>
@@ -127,14 +131,14 @@
           </div>
 
           <button type="submit" id="bouton-acces" class="bouton bouton--primaire bouton--grand">
-            Accès démo
+            Se connecter
             <svg class="icone" aria-hidden="true"><use href="#ico-fleche"></use></svg>
           </button>
         </form>
 
         <p class="note-confidentialite">
           <svg class="icone" aria-hidden="true"><use href="#ico-cadenas"></use></svg>
-          <span>Mode démonstration&nbsp;: n'importe quelle saisie fonctionne. Aucune donnée n'est enregistrée ni transmise.</span>
+          <span>Environnement de démonstration&nbsp;: aucune donnée saisie n'est enregistrée ni transmise.</span>
         </p>
       </div>
     </section>
@@ -161,22 +165,22 @@
     </div>
 
     <nav class="menu-lateral__nav" aria-label="Pages du portail">
-      <p class="menu-groupe"><span class="menu-groupe__num">1</span>Descriptif<small>Que s'est-il passé&nbsp;?</small></p>
+      <p class="menu-groupe">Pilotage</p>
       <a class="menu-lien" href="#vue-ensemble" data-lien="vue-ensemble"><svg class="icone" aria-hidden="true"><use href="#ico-accueil"></use></svg>Vue d'ensemble</a>
 
-      <p class="menu-groupe"><span class="menu-groupe__num">2</span>Prédictif<small>Que va-t-il se passer&nbsp;?</small></p>
+      <p class="menu-groupe">Analyses prédictives</p>
       <a class="menu-lien" href="#previsions" data-lien="previsions"><svg class="icone" aria-hidden="true"><use href="#ico-courbe"></use></svg>Prévisions 2026–2028</a>
       <a class="menu-lien" href="#risque" data-lien="risque"><svg class="icone" aria-hidden="true"><use href="#ico-risque"></use></svg>Risque de départ</a>
       <a class="menu-lien" href="#competences" data-lien="competences"><svg class="icone" aria-hidden="true"><use href="#ico-grille"></use></svg>Compétences de demain</a>
 
-      <p class="menu-groupe"><span class="menu-groupe__num">3</span>Prescriptif<small>Que faire&nbsp;?</small></p>
+      <p class="menu-groupe">Recommandations</p>
       <a class="menu-lien" href="#plan-action" data-lien="plan-action"><svg class="icone" aria-hidden="true"><use href="#ico-cible"></use></svg>Plan d'action GPEC</a>
 
-      <p class="menu-groupe">Méthode</p>
+      <p class="menu-groupe">Documentation</p>
       <a class="menu-lien" href="#methodologie" data-lien="methodologie"><svg class="icone" aria-hidden="true"><use href="#ico-bouclier"></use></svg>Méthodologie &amp; éthique</a>
     </nav>
 
-    <p class="menu-lateral__bas">Démo pédagogique<br>Entreprise et données fictives</p>
+    <p class="menu-lateral__bas">Données RH au 31/12/2025<br>Plan «&nbsp;Industrie 4.0&nbsp;» 2026–2028</p>
   </aside>
 
   <div id="voile-menu" class="voile" hidden></div>
@@ -187,9 +191,14 @@
         <button type="button" id="bouton-menu" class="bouton-icone bouton-menu" aria-label="Ouvrir le menu" aria-controls="menu-lateral" aria-expanded="false">
           <svg class="icone" aria-hidden="true"><use href="#ico-menu"></use></svg>
         </button>
+        <p class="fil-ariane"><span>Portail RH</span><svg class="icone" aria-hidden="true"><use href="#ico-chevron"></use></svg><strong id="fil-page">Vue d'ensemble</strong></p>
       </div>
 
       <div class="utilisateur">
+        <a class="notification" id="lien-alertes" href="#previsions" aria-label="Alertes prédictives">
+          <svg class="icone" aria-hidden="true"><use href="#ico-cloche"></use></svg>
+          <span class="notification__nombre" id="nombre-alertes"></span>
+        </a>
         <span class="avatar" aria-hidden="true">CE</span>
         <span class="utilisateur__texte">
           <span class="utilisateur__nom">Chakir Ez-zarzari</span>
@@ -208,83 +217,80 @@
     <main id="contenu" class="contenu">
 
       <!-- ---------------------------------------------------------------
-           PAGE : VUE D'ENSEMBLE (Descriptif)
+           VUE D'ENSEMBLE
            --------------------------------------------------------------- -->
       <section class="page" id="page-vue-ensemble" data-page="vue-ensemble" aria-labelledby="titre-vue-ensemble" hidden>
         <header class="entete-page">
           <div class="entete-page__ligne">
-            <p class="surtitre"><span data-badge></span><span>Vue d'ensemble — Aujourd'hui</span></p>
-            <ol class="ruban" data-ruban></ol>
+            <h1 class="titre-page" id="titre-vue-ensemble" tabindex="-1">Vue d'ensemble</h1>
+            <span data-badge></span>
           </div>
-          <h1 class="titre-page" id="titre-vue-ensemble" tabindex="-1">Bonjour Chakir</h1>
-          <p class="chapeau">Nous sommes le <time id="date-du-jour"></time>. Que s'est-il passé&nbsp;? Voici le diagnostic de vos effectifs au 31/12/2025, dernière clôture annuelle.</p>
+          <p class="entete-page__meta">Bonjour Chakir — <time id="date-du-jour"></time> · Données RH au 31/12/2025</p>
         </header>
 
         <section class="grille-kpi" id="kpi-vue-ensemble" aria-label="Indicateurs clés"></section>
-        <p class="note-source">
-          <svg class="icone" aria-hidden="true"><use href="#ico-info"></use></svg>
-          <span>Source&nbsp;: TD TECHNOVA (effectif, sexe, âge, démissions). Absentéisme, ancienneté, formation et masse salariale&nbsp;: valeurs simulées pour la démonstration.</span>
-        </p>
 
-        <div class="grille-cartes">
-          <article class="carte col-6">
+        <div class="grille-cartes" data-onglets>
+          <article class="carte col-4" data-onglet="Âges">
             <header class="carte__entete">
               <div>
                 <h2 class="carte__titre">Pyramide des âges</h2>
-                <p class="carte__sous-titre">Nombre de salariés par tranche d'âge et par sexe</p>
+                <p class="carte__sous-titre">Salariés par tranche d'âge et par sexe</p>
               </div>
-              <button type="button" class="bouton-discret" data-bascule-tableau="pyramide" aria-expanded="false" aria-controls="donnees-pyramide">Voir les données</button>
+              <button type="button" class="bouton-icone bouton-donnees" data-bascule-tableau="pyramide" aria-expanded="false" aria-controls="donnees-pyramide" aria-label="Voir les données" title="Voir les données"><svg class="icone" aria-hidden="true"><use href="#ico-tableau"></use></svg></button>
             </header>
             <div class="zone-graphique"><canvas id="graph-pyramide" role="img" aria-label="Pyramide des âges des salariés, par sexe"></canvas></div>
             <div class="tableau-donnees" id="donnees-pyramide" hidden></div>
           </article>
 
-          <article class="carte col-6">
+          <article class="carte col-4" data-onglet="Catégories">
             <header class="carte__entete">
               <div>
-                <h2 class="carte__titre">Effectifs par catégorie et par sexe</h2>
+                <h2 class="carte__titre">Effectifs par catégorie</h2>
                 <p class="carte__sous-titre">Hommes et femmes au 31/12/2025</p>
               </div>
-              <button type="button" class="bouton-discret" data-bascule-tableau="categories" aria-expanded="false" aria-controls="donnees-categories">Voir les données</button>
+              <button type="button" class="bouton-icone bouton-donnees" data-bascule-tableau="categories" aria-expanded="false" aria-controls="donnees-categories" aria-label="Voir les données" title="Voir les données"><svg class="icone" aria-hidden="true"><use href="#ico-tableau"></use></svg></button>
             </header>
             <div class="zone-graphique"><canvas id="graph-categories" role="img" aria-label="Effectifs par catégorie et par sexe"></canvas></div>
             <div class="tableau-donnees" id="donnees-categories" hidden></div>
           </article>
 
-          <article class="carte col-6">
+          <article class="carte col-4" data-onglet="Jeunes & seniors">
             <header class="carte__entete">
               <div>
-                <h2 class="carte__titre">Jeunes et seniors par catégorie</h2>
-                <p class="carte__sous-titre">Salariés de moins de 30 ans et de 50 ans et plus</p>
+                <h2 class="carte__titre">Jeunes et seniors</h2>
+                <p class="carte__sous-titre">Moins de 30 ans et 50 ans et plus</p>
               </div>
-              <button type="button" class="bouton-discret" data-bascule-tableau="ages" aria-expanded="false" aria-controls="donnees-ages">Voir les données</button>
+              <button type="button" class="bouton-icone bouton-donnees" data-bascule-tableau="ages" aria-expanded="false" aria-controls="donnees-ages" aria-label="Voir les données" title="Voir les données"><svg class="icone" aria-hidden="true"><use href="#ico-tableau"></use></svg></button>
             </header>
             <div class="zone-graphique"><canvas id="graph-ages" role="img" aria-label="Moins de 30 ans et 50 ans et plus, par catégorie"></canvas></div>
             <div class="tableau-donnees" id="donnees-ages" hidden></div>
           </article>
+        </div>
 
-          <article class="carte carte--a-retenir col-6">
-            <h2 class="carte__titre">À retenir</h2>
+        <div class="grille-cartes grille-cartes--espace">
+          <article class="carte col-6">
+            <h2 class="carte__titre titre-avec-icone"><svg class="icone" aria-hidden="true"><use href="#ico-alerte"></use></svg>Points d'attention</h2>
             <ul class="liste-faits liste-faits--colonne" id="faits-vue-ensemble"></ul>
             <a class="lien-suite" href="#previsions">
-              Que va-t-il se passer d'ici 2028&nbsp;?
+              Voir les prévisions 2026–2028
               <svg class="icone" aria-hidden="true"><use href="#ico-fleche"></use></svg>
             </a>
           </article>
 
-          <article class="carte col-12">
+          <article class="carte col-6">
             <div>
-              <h2 class="carte__titre">Plan stratégique 2026–2028 «&nbsp;Industrie 4.0&nbsp;»</h2>
-              <p class="carte__sous-titre">Ce qui va transformer les besoins en emplois et en compétences d'ici 2028</p>
+              <h2 class="carte__titre">Plan «&nbsp;Industrie 4.0&nbsp;» 2026–2028</h2>
+              <p class="carte__sous-titre">Impacts RH attendus</p>
             </div>
-            <ul class="plan-strategique">
+            <ul class="plan-strategique plan-strategique--colonne">
               <li>
                 <span class="plan-strategique__icone" aria-hidden="true"><svg class="icone"><use href="#ico-robot"></use></svg></span>
                 <span><strong>Automatisation de deux lignes d'assemblage</strong><span>→ Moins de besoins en agents d'exécution</span></span>
               </li>
               <li>
                 <span class="plan-strategique__icone" aria-hidden="true"><svg class="icone"><use href="#ico-outil"></use></svg></span>
-                <span><strong>Offre de maintenance prédictive</strong><span>→ Plus de techniciens qualifiés en robotique et données</span></span>
+                <span><strong>Offre de maintenance prédictive</strong><span>→ Plus de techniciens en robotique et données</span></span>
               </li>
               <li>
                 <span class="plan-strategique__icone" aria-hidden="true"><svg class="icone"><use href="#ico-ampoule"></use></svg></span>
@@ -293,21 +299,18 @@
             </ul>
           </article>
         </div>
-
-        <nav class="nav-etapes" data-nav-etapes aria-label="Étapes de la démonstration"></nav>
       </section>
 
       <!-- ---------------------------------------------------------------
-           PAGE : PRÉVISIONS 2026–2028 (Prédictif)
+           PRÉVISIONS 2026–2028
            --------------------------------------------------------------- -->
       <section class="page" id="page-previsions" data-page="previsions" aria-labelledby="titre-previsions" hidden>
         <header class="entete-page">
           <div class="entete-page__ligne">
-            <p class="surtitre"><span data-badge></span><span>Horizon 2028 · plan «&nbsp;Industrie 4.0&nbsp;»</span></p>
-            <ol class="ruban" data-ruban></ol>
+            <h1 class="titre-page" id="titre-previsions" tabindex="-1">Prévisions 2026–2028</h1>
+            <span data-badge></span>
           </div>
-          <h1 class="titre-page" id="titre-previsions" tabindex="-1">Prévisions 2026–2028</h1>
-          <p class="chapeau">Que va-t-il se passer&nbsp;? Effectif disponible et besoins par catégorie au 31/12/2028, si l'entreprise ne fait rien.</p>
+          <p class="entete-page__meta">Effectif disponible et besoins au 31/12/2028 · plan «&nbsp;Industrie 4.0&nbsp;»</p>
         </header>
 
         <div class="barre-filtres" role="group" aria-label="Hypothèses de la prévision">
@@ -324,7 +327,10 @@
               <option value="65">65 ans</option>
             </select>
           </div>
-          <p class="filtre__hypotheses" id="hypotheses-previsions"></p>
+          <details class="hypotheses" data-repli-mobile>
+            <summary>Hypothèses du scénario</summary>
+            <p class="filtre__hypotheses" id="hypotheses-previsions"></p>
+          </details>
         </div>
 
         <section class="grille-synthese" id="synthese-previsions" aria-label="Synthèse au 31/12/2028"></section>
@@ -334,14 +340,12 @@
             <svg class="icone" aria-hidden="true"><use href="#ico-alerte"></use></svg>
             Alertes prédictives
           </h2>
-          <ul class="liste-alertes" id="alertes-previsions"></ul>
+          <ul class="liste-alertes est-reduite" id="alertes-previsions"></ul>
+          <button type="button" class="bouton-discret bouton-plus" id="bouton-alertes" aria-controls="alertes-previsions" aria-expanded="false"></button>
         </article>
 
         <div class="entete-section">
-          <div>
-            <h2 class="titre-section">Effectif disponible et besoins, par catégorie</h2>
-            <p class="carte__sous-titre">Écart 2028 = effectif disponible − besoins (positif&nbsp;: surplus, négatif&nbsp;: déficit).</p>
-          </div>
+          <h2 class="titre-section">Disponible et besoins par catégorie</h2>
           <ul class="legende-commune" aria-label="Légende des graphiques">
             <li><span class="cle-ligne cle-ligne--besoins"></span>Besoins</li>
             <li><span class="cle-ligne cle-ligne--ressources"></span>Effectif disponible</li>
@@ -349,126 +353,96 @@
             <li><span class="cle-zone cle-zone--deficit"></span>Déficit</li>
           </ul>
         </div>
-        <div class="grille-multiples" id="grille-previsions"></div>
+        <div class="grille-multiples" id="grille-previsions" data-onglets></div>
         <div class="sous-grille">
           <button type="button" class="bouton-discret" data-bascule-tableau="previsions" aria-expanded="false" aria-controls="donnees-previsions">Voir les données</button>
           <div class="tableau-donnees" id="donnees-previsions" hidden></div>
         </div>
 
-        <article class="carte">
-          <header class="carte__entete">
-            <div>
-              <h2 class="carte__titre">Effectif disponible au 31/12/2028</h2>
-              <p class="carte__sous-titre">De l'effectif 2025 à l'effectif disponible 2028, comparé aux besoins du plan</p>
-            </div>
-          </header>
-          <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-flux"></div>
-          <p class="formule"><strong>Formule&nbsp;:</strong> Effectif disponible = Effectif 2025 − Retraites − Démissions ± Mobilité interne</p>
-        </article>
+        <div class="grille-cartes" data-onglets>
+          <article class="carte col-12" data-onglet="Bilan 2028">
+            <h2 class="carte__titre">Effectif disponible au 31/12/2028</h2>
+            <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-flux"></div>
+            <p class="formule"><strong>Effectif disponible</strong> = Effectif 2025 − Retraites − Démissions ± Mobilité interne</p>
+          </article>
 
-        <div class="grille-cartes grille-cartes--espace">
-          <article class="carte col-6">
-            <header class="carte__entete">
-              <div>
-                <h2 class="carte__titre">Départs à la retraite prévus</h2>
-                <p class="carte__sous-titre" id="sous-titre-retraites">Salariés atteignant 60 ans entre 2026 et 2028</p>
-              </div>
-            </header>
+          <article class="carte col-6" data-onglet="Retraites">
+            <div>
+              <h2 class="carte__titre">Départs à la retraite</h2>
+              <p class="carte__sous-titre" id="sous-titre-retraites">Salariés atteignant 60 ans entre 2026 et 2028</p>
+            </div>
             <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-retraites"></div>
           </article>
 
-          <article class="carte col-6">
-            <header class="carte__entete">
-              <div>
-                <h2 class="carte__titre">Démissions prévues</h2>
-                <p class="carte__sous-titre">Taux annuel constant × 3 ans (hypothèse du TD)</p>
-              </div>
-            </header>
+          <article class="carte col-6" data-onglet="Démissions">
+            <div>
+              <h2 class="carte__titre">Démissions prévues</h2>
+              <p class="carte__sous-titre">Taux annuel constant × 3 ans</p>
+            </div>
             <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-demissions"></div>
-            <p class="encadre-alerte">
-              <span class="encadre-alerte__icone" aria-hidden="true"><svg class="icone"><use href="#ico-alerte"></use></svg></span>
-              <span><strong>Alerte&nbsp;:</strong> 70&nbsp;% des démissions de techniciens concernent des moins de 35 ans, attirés par la concurrence.</span>
-            </p>
           </article>
         </div>
-
-        <nav class="nav-etapes" data-nav-etapes aria-label="Étapes de la démonstration"></nav>
       </section>
 
-      <!-- PAGE : RISQUE DE DÉPART (Prédictif) — étape suivante -->
+      <!-- ---------------------------------------------------------------
+           RISQUE DE DÉPART
+           --------------------------------------------------------------- -->
       <section class="page" id="page-risque" data-page="risque" aria-labelledby="titre-risque" hidden>
         <header class="entete-page">
           <div class="entete-page__ligne">
-            <p class="surtitre"><span data-badge></span><span>Analyse individuelle</span></p>
-            <ol class="ruban" data-ruban></ol>
+            <h1 class="titre-page" id="titre-risque" tabindex="-1">Risque de départ</h1>
+            <span data-badge></span>
           </div>
-          <h1 class="titre-page" id="titre-risque" tabindex="-1">Risque de départ</h1>
-          <p class="chapeau">Que va-t-il se passer&nbsp;? Le risque de départ de 15 salariés suivis, et les facteurs qui l'expliquent (IA explicable).</p>
+          <p class="entete-page__meta">15 salariés suivis · score de 0 à 100 et facteurs explicatifs</p>
         </header>
 
         <p class="bandeau-decision">
           <span class="bandeau-decision__icone" aria-hidden="true"><svg class="icone"><use href="#ico-bouclier"></use></svg></span>
-          <span><strong>Aide à la décision, pas une décision.</strong> Le score signale un risque&nbsp;; c'est le manager, avec les RH, qui décide après un entretien avec le salarié. Aucune décision n'est prise automatiquement.</span>
+          <span><strong>Aide à la décision&nbsp;:</strong> le score ne décide rien. Le manager décide, après un entretien avec le salarié&nbsp;; aucune décision automatique.</span>
         </p>
 
         <section class="grille-synthese grille-synthese--4" id="synthese-risque" aria-label="Répartition des salariés par niveau de risque"></section>
 
         <div class="risque">
           <article class="carte risque__liste" aria-labelledby="titre-liste-risque">
-            <header class="carte__entete">
-              <div>
-                <h2 class="carte__titre" id="titre-liste-risque">Salariés suivis</h2>
-                <p class="carte__sous-titre">Cliquez sur un salarié pour voir les facteurs de son score</p>
-              </div>
-            </header>
+            <div>
+              <h2 class="carte__titre" id="titre-liste-risque">Salariés suivis</h2>
+              <p class="carte__sous-titre">Touchez ou cliquez un salarié pour voir les facteurs de son score</p>
+            </div>
             <div class="tableau-donnees" id="liste-risque"></div>
           </article>
 
           <article class="carte risque__detail" id="detail-risque" aria-live="polite"></article>
         </div>
-
-        <p class="note-source">
-          <svg class="icone" aria-hidden="true"><use href="#ico-info"></use></svg>
-          <span>Salariés et scores simulés pour la démonstration (non fournis par le TD), cohérents avec l'alerte du TD&nbsp;: 70&nbsp;% des démissions de techniciens concernent des moins de 35 ans.</span>
-        </p>
-
-        <nav class="nav-etapes" data-nav-etapes aria-label="Étapes de la démonstration"></nav>
+        <div class="voile voile--detail" id="voile-detail" hidden></div>
       </section>
 
-      <!-- PAGE : COMPÉTENCES DE DEMAIN (Prédictif) — étape suivante -->
+      <!-- ---------------------------------------------------------------
+           COMPÉTENCES DE DEMAIN
+           --------------------------------------------------------------- -->
       <section class="page" id="page-competences" data-page="competences" aria-labelledby="titre-competences" hidden>
         <header class="entete-page">
           <div class="entete-page__ligne">
-            <p class="surtitre"><span data-badge></span><span>Horizon 2028</span></p>
-            <ol class="ruban" data-ruban></ol>
+            <h1 class="titre-page" id="titre-competences" tabindex="-1">Compétences de demain</h1>
+            <span data-badge></span>
           </div>
-          <h1 class="titre-page" id="titre-competences" tabindex="-1">Compétences de demain</h1>
-          <p class="chapeau">Que va-t-il se passer&nbsp;? L'écart qualitatif&nbsp;: les compétences à développer d'ici 2028 pour réussir le plan «&nbsp;Industrie 4.0&nbsp;».</p>
+          <p class="entete-page__meta">Écart qualitatif&nbsp;: maîtrise 2025 et objectifs 2028</p>
         </header>
 
-        <div class="competences-haut">
-          <article class="chiffre-cle" aria-labelledby="titre-chiffre-cle">
+        <article class="chiffre-cle" aria-labelledby="titre-chiffre-cle">
+          <div>
             <p class="chiffre-cle__titre" id="titre-chiffre-cle">Techniciens maîtrisant la robotique</p>
             <p class="chiffre-cle__valeur" id="chiffre-cle-valeur"></p>
-            <p class="chiffre-cle__calcul" id="chiffre-cle-calcul"></p>
-            <p class="chiffre-cle__conclusion" id="chiffre-cle-conclusion"></p>
-          </article>
-
-          <article class="carte competences-explication">
-            <h2 class="carte__titre">Comment lire ce tableau&nbsp;?</h2>
-            <ul class="liste-faits liste-faits--colonne">
-              <li><svg class="icone" aria-hidden="true"><use href="#ico-graphique"></use></svg><span><strong>Maîtrise 2025</strong>&nbsp;: part des salariés de la catégorie qui maîtrisent déjà la compétence.</span></li>
-              <li><svg class="icone" aria-hidden="true"><use href="#ico-cible"></use></svg><span><strong>Objectif 2028</strong>&nbsp;: part visée par le plan «&nbsp;Industrie 4.0&nbsp;».</span></li>
-              <li><svg class="icone" aria-hidden="true"><use href="#ico-calcul"></use></svg><span><strong>À former ou recruter</strong>&nbsp;= besoins 2028 × objectif − effectif 2025 × maîtrise (méthode du TD).</span></li>
-            </ul>
-          </article>
-        </div>
+          </div>
+          <p class="chiffre-cle__calcul" id="chiffre-cle-calcul"></p>
+          <p class="chiffre-cle__conclusion" id="chiffre-cle-conclusion"></p>
+        </article>
 
         <article class="carte" aria-labelledby="titre-carte-competences">
           <header class="carte__entete">
             <div>
-              <h2 class="carte__titre" id="titre-carte-competences">Écart qualitatif&nbsp;: maîtrise 2025 → objectif 2028</h2>
-              <p class="carte__sous-titre" id="sous-titre-competences">Part des salariés de chaque catégorie qui maîtrisent la compétence</p>
+              <h2 class="carte__titre" id="titre-carte-competences">Maîtrise 2025 → objectif 2028</h2>
+              <p class="carte__sous-titre" id="sous-titre-competences"></p>
             </div>
             <ul class="legende-commune" aria-label="Légende">
               <li><span class="haltere-cle haltere-cle--avant"></span>Maîtrise 2025</li>
@@ -478,44 +452,32 @@
           <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-competences"></div>
         </article>
 
-        <div class="entete-section">
-          <div>
-            <h2 class="titre-section">Les métiers de demain</h2>
-            <p class="carte__sous-titre">Ce que les prévisions 2028 annoncent pour les métiers de TECHNOVA</p>
-          </div>
-        </div>
         <div class="grille-metiers">
-          <article class="carte metiers metiers--emergents">
-            <h3 class="metiers__titre"><span class="metiers__icone" aria-hidden="true"><svg class="icone"><use href="#ico-fleche-haut"></use></svg></span>Métiers émergents</h3>
+          <details class="carte repli metiers metiers--emergents" data-repli-mobile open>
+            <summary class="metiers__titre"><span class="metiers__icone" aria-hidden="true"><svg class="icone"><use href="#ico-fleche-haut"></use></svg></span>Métiers émergents</summary>
             <ul class="metiers__liste" id="metiers-emergents"></ul>
-          </article>
-          <article class="carte metiers metiers--tension">
-            <h3 class="metiers__titre"><span class="metiers__icone" aria-hidden="true"><svg class="icone"><use href="#ico-alerte"></use></svg></span>Métiers en tension</h3>
+          </details>
+          <details class="carte repli metiers metiers--tension" data-repli-mobile open>
+            <summary class="metiers__titre"><span class="metiers__icone" aria-hidden="true"><svg class="icone"><use href="#ico-alerte"></use></svg></span>Métiers en tension</summary>
             <ul class="metiers__liste" id="metiers-tension"></ul>
-          </article>
-          <article class="carte metiers metiers--declin">
-            <h3 class="metiers__titre"><span class="metiers__icone" aria-hidden="true"><svg class="icone"><use href="#ico-fleche-bas"></use></svg></span>Métiers en déclin</h3>
+          </details>
+          <details class="carte repli metiers metiers--declin" data-repli-mobile open>
+            <summary class="metiers__titre"><span class="metiers__icone" aria-hidden="true"><svg class="icone"><use href="#ico-fleche-bas"></use></svg></span>Métiers en déclin</summary>
             <ul class="metiers__liste" id="metiers-declin"></ul>
-          </article>
+          </details>
         </div>
-
-        <p class="note-source">
-          <svg class="icone" aria-hidden="true"><use href="#ico-info"></use></svg>
-          <span>Source&nbsp;: TD TECHNOVA (compétences cibles, maîtrise 2025, objectifs 2028). Les listes de métiers sont une illustration pour la démonstration.</span>
-        </p>
-
-        <nav class="nav-etapes" data-nav-etapes aria-label="Étapes de la démonstration"></nav>
       </section>
 
-      <!-- PAGE : PLAN D'ACTION GPEC (Prescriptif) — étape suivante -->
+      <!-- ---------------------------------------------------------------
+           PLAN D'ACTION GPEC
+           --------------------------------------------------------------- -->
       <section class="page" id="page-plan-action" data-page="plan-action" aria-labelledby="titre-plan-action" hidden>
         <header class="entete-page">
           <div class="entete-page__ligne">
-            <p class="surtitre"><span data-badge></span><span>Décisions RH</span></p>
-            <ol class="ruban" data-ruban></ol>
+            <h1 class="titre-page" id="titre-plan-action" tabindex="-1">Plan d'action GPEC</h1>
+            <span data-badge></span>
           </div>
-          <h1 class="titre-page" id="titre-plan-action" tabindex="-1">Plan d'action GPEC</h1>
-          <p class="chapeau">Que faire&nbsp;? Les réponses RH de TECHNOVA, calculées à partir des écarts prévus pour 2028.</p>
+          <p class="entete-page__meta">Actions recommandées à partir des écarts 2028</p>
         </header>
 
         <div class="barre-filtres" role="group" aria-label="Scénario du plan d'action">
@@ -528,48 +490,32 @@
 
         <section class="grille-synthese grille-synthese--4" id="synthese-plan" aria-label="Le plan d'action en chiffres"></section>
 
-        <article class="carte" aria-labelledby="titre-ecarts-actions">
-          <div>
-            <h2 class="carte__titre" id="titre-ecarts-actions">De l'écart à l'action</h2>
-            <p class="carte__sous-titre">Chaque écart prévu pour 2028 appelle des réponses RH</p>
-          </div>
-          <div class="ecarts-actions" id="ecarts-actions"></div>
-        </article>
-
-        <article class="carte carte--plan-table" aria-labelledby="titre-tableau-plan">
-          <header class="carte__entete">
-            <div>
-              <h2 class="carte__titre" id="titre-tableau-plan">Actions recommandées</h2>
-              <p class="carte__sous-titre">Catégorie ciblée, effectif concerné, échéance, priorité et responsable de chaque action</p>
-            </div>
-          </header>
+        <article class="carte" aria-labelledby="titre-tableau-plan">
+          <h2 class="carte__titre" id="titre-tableau-plan">Actions recommandées</h2>
           <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-plan"></div>
+          <button type="button" class="bouton-discret bouton-plus" id="bouton-actions" aria-controls="tableau-plan" aria-expanded="false"></button>
         </article>
 
-        <p class="note-source">
-          <svg class="icone" aria-hidden="true"><use href="#ico-info"></use></svg>
-          <span>Source&nbsp;: TD TECHNOVA (6 réponses RH, délai de recrutement de 5 mois, budget formation de 4,5 MDH). Les responsables autres que le DRH sont fictifs.</span>
-        </p>
-
-        <nav class="nav-etapes" data-nav-etapes aria-label="Étapes de la démonstration"></nav>
+        <details class="carte repli carte--espace" data-repli-mobile open>
+          <summary class="carte__titre">De l'écart à l'action</summary>
+          <div class="ecarts-actions" id="ecarts-actions"></div>
+        </details>
       </section>
 
-      <!-- PAGE : MÉTHODOLOGIE & ÉTHIQUE — étape suivante -->
+      <!-- ---------------------------------------------------------------
+           MÉTHODOLOGIE & ÉTHIQUE
+           --------------------------------------------------------------- -->
       <section class="page" id="page-methodologie" data-page="methodologie" aria-labelledby="titre-methodologie" hidden>
         <header class="entete-page">
           <div class="entete-page__ligne">
-            <p class="surtitre"><span data-badge></span><span>Comment ça marche&nbsp;?</span></p>
-            <ol class="ruban" data-ruban></ol>
+            <h1 class="titre-page" id="titre-methodologie" tabindex="-1">Méthodologie &amp; éthique</h1>
+            <span data-badge></span>
           </div>
-          <h1 class="titre-page" id="titre-methodologie" tabindex="-1">Méthodologie &amp; éthique</h1>
-          <p class="chapeau">Comment ça marche&nbsp;? Des données RH à la décision humaine&nbsp;: la méthode, ses limites et les règles éthiques.</p>
+          <p class="entete-page__meta">Comment les prévisions sont produites, leurs limites et les règles de conformité</p>
         </header>
 
-        <article class="carte" aria-labelledby="titre-pipeline">
-          <div>
-            <h2 class="carte__titre" id="titre-pipeline">Le parcours de la donnée</h2>
-            <p class="carte__sous-titre">L'outil éclaire la décision&nbsp;; c'est toujours un humain qui décide.</p>
-          </div>
+        <details class="carte repli" data-repli-mobile data-ouvert-mobile open>
+          <summary class="carte__titre">Le parcours de la donnée</summary>
           <ol class="pipeline">
             <li class="pipeline__etape">
               <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-base"></use></svg></span>
@@ -579,17 +525,17 @@
             <li class="pipeline__etape">
               <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-filtre"></use></svg></span>
               <strong>Nettoyage</strong>
-              <span>Doublons, valeurs manquantes et erreurs corrigés, formats harmonisés</span>
+              <span>Doublons, valeurs manquantes et erreurs corrigés</span>
             </li>
             <li class="pipeline__etape">
               <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-calcul"></use></svg></span>
               <strong>Modèle prédictif</strong>
-              <span>Formule de flux du TD, scénarios, score de risque explicable</span>
+              <span>Calcul des flux, scénarios, score de risque explicable</span>
             </li>
             <li class="pipeline__etape">
               <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-courbe"></use></svg></span>
               <strong>Prévisions</strong>
-              <span>Effectif disponible, besoins et écarts 2028, alertes</span>
+              <span>Effectif disponible, besoins, écarts 2028, alertes</span>
             </li>
             <li class="pipeline__etape pipeline__etape--humaine">
               <span class="pipeline__icone" aria-hidden="true"><svg class="icone"><use href="#ico-personne"></use></svg></span>
@@ -597,82 +543,68 @@
               <span>Le DRH et les managers choisissent le plan d'action</span>
             </li>
           </ol>
-          <div class="pipeline__niveaux" aria-hidden="true">
-            <span class="pipeline__niveau pipeline__niveau--1">1 · Descriptif</span>
-            <span class="pipeline__niveau pipeline__niveau--2">2 · Prédictif</span>
-            <span class="pipeline__niveau pipeline__niveau--3">3 · Prescriptif</span>
-          </div>
-        </article>
+        </details>
 
-        <div class="entete-section">
-          <div>
-            <h2 class="titre-section">Les sources de données</h2>
-            <p class="carte__sous-titre">Ce que chaque source apporte au modèle</p>
-          </div>
-        </div>
-        <ul class="grille-sources">
-          <li class="source"><strong>SIRH</strong><span>Effectifs, catégories, âges, ancienneté, sexe</span></li>
-          <li class="source"><strong>Paie</strong><span>Salaires, augmentations, masse salariale</span></li>
-          <li class="source"><strong>Évaluations annuelles</strong><span>Performance et potentiel des salariés</span></li>
-          <li class="source"><strong>Formations</strong><span>Formations suivies, compétences acquises</span></li>
-          <li class="source"><strong>Entretiens de sortie</strong><span>Motifs de départ&nbsp;: ils nourrissent le score de risque</span></li>
-        </ul>
+        <details class="carte repli carte--espace" data-repli-mobile open>
+          <summary class="carte__titre">Sources des données</summary>
+          <ul class="grille-sources">
+            <li class="source"><strong>SIRH</strong><span>Effectifs, catégories, âges, ancienneté, sexe</span></li>
+            <li class="source"><strong>Paie</strong><span>Salaires, augmentations, masse salariale</span></li>
+            <li class="source"><strong>Évaluations annuelles</strong><span>Performance et potentiel des salariés</span></li>
+            <li class="source"><strong>Formations</strong><span>Formations suivies, compétences acquises</span></li>
+            <li class="source"><strong>Entretiens de sortie</strong><span>Motifs de départ&nbsp;: ils nourrissent le score de risque</span></li>
+          </ul>
+          <p class="carte__sous-titre">Données agrégées issues du cas TECHNOVA (TD du module GRH, ENCG Settat)&nbsp;; le détail individuel, l'absentéisme, l'ancienneté, la formation, la masse salariale et les 15 salariés suivis sont simulés.</p>
+        </details>
 
-        <div class="entete-section">
-          <div>
-            <h2 class="titre-section">Le modèle en clair</h2>
-            <p class="carte__sous-titre">Des règles simples et vérifiables, reprises du TD TECHNOVA</p>
-          </div>
-        </div>
-        <div class="grille-cartes">
-          <article class="carte col-12">
-            <h3 class="carte__titre">Hypothèses par catégorie (TD)</h3>
-            <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-hypotheses"></div>
-            <p class="formule"><strong>Formule&nbsp;:</strong> Effectif disponible = Effectif 2025 − Retraites − Démissions ± Mobilité interne. Écart = Disponible − Besoins.</p>
-          </article>
-          <article class="carte col-12">
-            <h3 class="carte__titre">Les trois scénarios</h3>
-            <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-scenarios"></div>
-            <p class="carte__sous-titre">Le scénario central reprend exactement les besoins du TD. Les deux autres font varier la croissance de l'activité et le rythme d'automatisation.</p>
-          </article>
-          <article class="carte col-12">
-            <h3 class="carte__titre">Le score de risque de départ (IA explicable)</h3>
-            <p class="carte__sous-titre" id="texte-score"></p>
-            <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-score"></div>
-          </article>
-        </div>
+        <details class="carte repli carte--espace" data-repli-mobile open>
+          <summary class="carte__titre">Le modèle de prévision</summary>
+          <h3 class="sous-titre-section">Hypothèses par catégorie</h3>
+          <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-hypotheses"></div>
+          <p class="formule"><strong>Effectif disponible</strong> = Effectif 2025 − Retraites − Démissions ± Mobilité interne. <strong>Écart</strong> = Disponible − Besoins.</p>
+          <h3 class="sous-titre-section">Les trois scénarios</h3>
+          <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-scenarios"></div>
+          <p class="carte__sous-titre">Le scénario central reprend les besoins du plan stratégique. Les deux autres font varier la croissance de l'activité et le rythme d'automatisation.</p>
+        </details>
 
-        <div class="entete-section">
-          <div>
-            <h2 class="titre-section">Les limites</h2>
-            <p class="carte__sous-titre">Ce qu'il faut garder en tête avant de décider</p>
-          </div>
-        </div>
-        <ul class="grille-principes">
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-base"></use></svg></span><strong>Qualité des données</strong><span>Des données incomplètes ou fausses donnent des prévisions fausses.</span></li>
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-egal"></use></svg></span><strong>Biais</strong><span>Un modèle appris sur le passé peut reproduire des inégalités passées.</span></li>
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-alerte"></use></svg></span><strong>Une prédiction n'est pas une certitude</strong><span>D'où les scénarios&nbsp;: on raisonne en fourchettes, pas en vérité absolue.</span></li>
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-rotation"></use></svg></span><strong>Actualiser le modèle</strong><span>Chaque année, on compare le prévu et le réalisé (ex.&nbsp;: un taux de démission «&nbsp;constant&nbsp;» peut changer).</span></li>
-        </ul>
+        <details class="carte repli carte--espace" data-repli-mobile open>
+          <summary class="carte__titre">Le score de risque de départ (IA explicable)</summary>
+          <p class="carte__sous-titre" id="texte-score"></p>
+          <div class="tableau-donnees tableau-donnees--ouvert" id="tableau-score"></div>
+        </details>
 
-        <div class="entete-section">
-          <div>
-            <h2 class="titre-section">L'éthique</h2>
-            <p class="carte__sous-titre">Des règles non négociables pour une analyse prédictive RH responsable</p>
-          </div>
-        </div>
-        <ul class="grille-principes grille-principes--ethique">
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-cadenas"></use></svg></span><strong>Protection des données personnelles</strong><span>Respect de la loi 09-08&nbsp;: traitement déclaré à la CNDP, données limitées au nécessaire, sécurisées et conservées pour une durée limitée.</span></li>
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-info"></use></svg></span><strong>Transparence envers les salariés</strong><span>Les salariés sont informés de l'outil et de sa finalité&nbsp;; ils ont un droit d'accès, de rectification et d'opposition.</span></li>
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-personne"></use></svg></span><strong>Pas de décision 100&nbsp;% automatisée</strong><span>L'algorithme propose, l'humain décide&nbsp;: entretien individuel, possibilité de contester.</span></li>
-          <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-bouclier"></use></svg></span><strong>Non-discrimination</strong><span>Le score n'utilise ni le sexe, ni l'âge, ni la situation familiale, ni la santé&nbsp;; les biais sont contrôlés régulièrement.</span></li>
-        </ul>
+        <details class="carte repli carte--espace" data-repli-mobile open>
+          <summary class="carte__titre">Les limites</summary>
+          <ul class="grille-principes">
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-base"></use></svg></span><strong>Qualité des données</strong><span>Des données incomplètes ou fausses donnent des prévisions fausses.</span></li>
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-egal"></use></svg></span><strong>Biais</strong><span>Un modèle appris sur le passé peut reproduire des inégalités passées.</span></li>
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-alerte"></use></svg></span><strong>Une prédiction n'est pas une certitude</strong><span>D'où les scénarios&nbsp;: on raisonne en fourchettes.</span></li>
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-rotation"></use></svg></span><strong>Actualiser le modèle</strong><span>Chaque année, on compare le prévu et le réalisé.</span></li>
+          </ul>
+        </details>
 
-        <nav class="nav-etapes" data-nav-etapes aria-label="Étapes de la démonstration"></nav>
+        <details class="carte repli carte--espace" data-repli-mobile open>
+          <summary class="carte__titre">Éthique et conformité</summary>
+          <ul class="grille-principes grille-principes--ethique">
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-cadenas"></use></svg></span><strong>Protection des données personnelles</strong><span>Loi 09-08&nbsp;: traitement déclaré à la CNDP, données limitées au nécessaire, sécurisées et conservées pour une durée limitée.</span></li>
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-info"></use></svg></span><strong>Transparence envers les salariés</strong><span>Information sur l'outil et sa finalité&nbsp;; droit d'accès, de rectification et d'opposition.</span></li>
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-personne"></use></svg></span><strong>Pas de décision 100&nbsp;% automatisée</strong><span>L'algorithme propose, l'humain décide&nbsp;: entretien individuel, possibilité de contester.</span></li>
+            <li class="principe"><span class="principe__icone" aria-hidden="true"><svg class="icone"><use href="#ico-bouclier"></use></svg></span><strong>Non-discrimination</strong><span>Le score n'utilise ni le sexe, ni l'âge, ni la situation familiale, ni la santé.</span></li>
+          </ul>
+        </details>
       </section>
 
     </main>
   </div>
+
+  <!-- Barre de navigation en bas (téléphones) -->
+  <nav class="nav-mobile" aria-label="Navigation principale">
+    <a href="#vue-ensemble" data-lien="vue-ensemble"><svg class="icone" aria-hidden="true"><use href="#ico-accueil"></use></svg><span>Accueil</span></a>
+    <a href="#previsions" data-lien="previsions"><svg class="icone" aria-hidden="true"><use href="#ico-courbe"></use></svg><span>Prévisions</span></a>
+    <a href="#risque" data-lien="risque"><svg class="icone" aria-hidden="true"><use href="#ico-risque"></use></svg><span>Risques</span></a>
+    <a href="#competences" data-lien="competences"><svg class="icone" aria-hidden="true"><use href="#ico-grille"></use></svg><span>Compétences</span></a>
+    <a href="#plan-action" data-lien="plan-action"><svg class="icone" aria-hidden="true"><use href="#ico-cible"></use></svg><span>Actions</span></a>
+  </nav>
 </div>
 
 <!-- =====================================================================

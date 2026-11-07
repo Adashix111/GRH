@@ -157,7 +157,7 @@
     legende.usePointStyle = true;
     legende.boxWidth = 10;
     legende.boxHeight = 10;
-    legende.padding = 16;
+    legende.padding = 12;
     legende.color = C.bleu900;
     legende.font = { size: 13, weight: '600' };
 
@@ -198,10 +198,12 @@
   /* ------------------------------------------------------------------------
      4. Pages et niveaux d'analyse
      ------------------------------------------------------------------------ */
-  const NIVEAUX = {
-    descriptif: { num: 1, nom: 'Descriptif', question: "Que s'est-il passé" + ESPACE + '?', premierePage: 'vue-ensemble' },
-    predictif: { num: 2, nom: 'Prédictif', question: 'Que va-t-il se passer' + ESPACE + '?', premierePage: 'previsions' },
-    prescriptif: { num: 3, nom: 'Prescriptif', question: 'Que faire' + ESPACE + '?', premierePage: 'plan-action' },
+  // Étiquette de module affichée à côté du titre de chaque page
+  const MODULES = {
+    descriptif: { nom: 'Analyse descriptive', icone: 'ico-graphique' },
+    predictif: { nom: 'Analyse prédictive', icone: 'ico-courbe' },
+    prescriptif: { nom: 'Analyse prescriptive', icone: 'ico-cible' },
+    methode: { nom: 'Documentation', icone: 'ico-livre' },
   };
 
   const PAGES = [
@@ -216,70 +218,60 @@
   const NOM_SITE = 'Portail RH · TECHNOVA INDUSTRIE SA';
 
   function creerBadge(niveau) {
-    const n = NIVEAUX[niveau];
-    const badge = doc.createElement('span');
-    badge.className = 'badge-niveau';
-    if (n) {
-      badge.innerHTML = '<span class="badge-niveau__num">' + n.num + '</span>';
-      badge.appendChild(doc.createTextNode(n.nom));
-      badge.setAttribute('title', 'Niveau d’analyse : ' + n.nom.toLowerCase());
-    } else {
-      badge.innerHTML = '<svg class="icone" aria-hidden="true"><use href="#ico-bouclier"></use></svg>';
-      badge.appendChild(doc.createTextNode('Méthode & éthique'));
-    }
-    return badge;
-  }
-
-  function remplirRuban(liste, niveauActif) {
-    liste.setAttribute('aria-label', "Les trois niveaux d'analyse");
-    Object.keys(NIVEAUX).forEach((cle, i) => {
-      const n = NIVEAUX[cle];
-      if (i > 0) {
-        const fleche = doc.createElement('li');
-        fleche.className = 'ruban__fleche';
-        fleche.setAttribute('aria-hidden', 'true');
-        fleche.innerHTML = '<svg class="icone"><use href="#ico-chevron"></use></svg>';
-        liste.appendChild(fleche);
-      }
-      const element = doc.createElement('li');
-      const lien = doc.createElement('a');
-      lien.className = 'ruban__etape' + (cle === niveauActif ? ' est-actif' : '');
-      lien.href = '#' + n.premierePage;
-      if (cle === niveauActif) lien.setAttribute('aria-current', 'step');
-      lien.innerHTML = '<span class="ruban__num">' + n.num + '</span><span class="ruban__texte"><strong></strong><small></small></span>';
-      $('strong', lien).textContent = n.nom;
-      $('small', lien).textContent = n.question;
-      element.appendChild(lien);
-      liste.appendChild(element);
-    });
-  }
-
-  function lienEtape(page, sens, indication) {
-    const lien = doc.createElement('a');
-    lien.className = 'nav-etapes__lien nav-etapes__lien--' + sens;
-    lien.href = '#' + page.id;
-    const n = NIVEAUX[page.niveau];
-    lien.innerHTML = '<span class="nav-etapes__indication"></span><span class="nav-etapes__titre"></span>';
-    $('.nav-etapes__indication', lien).textContent = indication;
-    $('.nav-etapes__titre', lien).textContent = (n ? n.num + ' · ' + n.nom + ' — ' : '') + page.titre;
-    return lien;
+    const m = MODULES[niveau] || MODULES.methode;
+    const etiquette = doc.createElement('span');
+    etiquette.className = 'module module--' + niveau;
+    etiquette.innerHTML = '<svg class="icone" aria-hidden="true"><use href="#' + m.icone + '"></use></svg>';
+    etiquette.appendChild(doc.createTextNode(m.nom));
+    return etiquette;
   }
 
   function construireElementsCommuns() {
-    PAGES.forEach((page, index) => {
+    PAGES.forEach((page) => {
       const section = doc.getElementById('page-' + page.id);
       if (!section) return;
-      const emplacementBadge = $('[data-badge]', section);
-      if (emplacementBadge) emplacementBadge.replaceWith(creerBadge(page.niveau));
-      const ruban = $('[data-ruban]', section);
-      if (ruban) remplirRuban(ruban, page.niveau);
-      const nav = $('[data-nav-etapes]', section);
-      if (nav) {
-        const precedente = PAGES[index - 1];
-        const suivante = PAGES[index + 1];
-        if (precedente) nav.appendChild(lienEtape(precedente, 'precedent', '← Étape précédente'));
-        nav.appendChild(suivante ? lienEtape(suivante, 'suivant', 'Étape suivante →') : lienEtape(PAGES[0], 'suivant', 'Revenir au début →'));
-      }
+      const emplacement = $('[data-badge]', section);
+      if (emplacement) emplacement.replaceWith(creerBadge(page.niveau));
+    });
+    // Cloche de la barre du haut : nombre d'alertes critiques (scénario central)
+    const critiques = genererAlertes(RH.prevoir('central')).filter((a) => a.niveau === 'critique').length;
+    $('#nombre-alertes').textContent = critiques;
+    $('#lien-alertes').setAttribute('aria-label', critiques + ' alertes prédictives');
+  }
+
+  // Onglets (téléphone) : un seul graphique ou tableau visible à la fois
+  function initialiserOnglets(conteneur) {
+    const panneaux = Array.from(conteneur.children).filter((e) => e.dataset.onglet);
+    if (!panneaux.length) return;
+    let barre = conteneur.previousElementSibling;
+    if (!barre || !barre.classList.contains('onglets__barre')) {
+      barre = doc.createElement('div');
+      barre.className = 'onglets__barre';
+      barre.setAttribute('role', 'tablist');
+      conteneur.parentNode.insertBefore(barre, conteneur);
+    }
+    barre.textContent = '';
+    const choisir = (index) => {
+      panneaux.forEach((panneau, i) => panneau.classList.toggle('onglet-inactif', i !== index));
+      Array.from(barre.children).forEach((bouton, i) => bouton.setAttribute('aria-selected', String(i === index)));
+      panneaux[index].querySelectorAll('canvas').forEach((toile) => { if (graphiques[toile.id]) graphiques[toile.id].resize(); });
+    };
+    panneaux.forEach((panneau, i) => {
+      const bouton = doc.createElement('button');
+      bouton.type = 'button';
+      bouton.setAttribute('role', 'tab');
+      bouton.textContent = panneau.dataset.onglet;
+      bouton.addEventListener('click', () => choisir(i));
+      barre.appendChild(bouton);
+    });
+    choisir(0);
+  }
+
+  // Sections repliables : ouvertes sur grand écran, fermées sur téléphone
+  function appliquerReplis(racine) {
+    $$('details[data-repli-mobile]', racine).forEach((details) => {
+      if (ecranEtroit.matches && !details.hasAttribute('data-ouvert-mobile')) details.removeAttribute('open');
+      else details.setAttribute('open', '');
     });
   }
 
@@ -302,6 +294,7 @@
   function afficherConnexion() {
     detruireGraphiques();
     fermerMenu();
+    fermerFeuille();
     $('#ecran-portail').hidden = true;
     $('#ecran-connexion').hidden = false;
     doc.body.classList.remove('est-connecte');
@@ -317,7 +310,7 @@
     fermerMenu();
 
     $$('.page').forEach((section) => { section.hidden = section.dataset.page !== page.id; });
-    $$('.menu-lien').forEach((lien) => {
+    $$('[data-lien]').forEach((lien) => {
       const actif = lien.dataset.lien === page.id;
       lien.classList.toggle('est-actif', actif);
       if (actif) lien.setAttribute('aria-current', 'page');
@@ -325,10 +318,15 @@
     });
 
     doc.title = page.titre + ' — ' + NOM_SITE;
+    $('#fil-page').textContent = page.titre;
+    fermerFeuille();
     window.scrollTo(0, 0);
     detruireGraphiques();
     pageCourante = page.id;
     if (page.rendu) page.rendu();
+    const section = doc.getElementById('page-' + page.id);
+    appliquerReplis(section);
+    $$('[data-onglets]', section).forEach(initialiserOnglets);
 
     if (!venaitDeLaConnexion) {
       const titre = $('#page-' + page.id + ' .titre-page');
@@ -365,8 +363,23 @@
     $('#voile-menu').addEventListener('click', fermerMenu);
     $$('.menu-lien').forEach((lien) => lien.addEventListener('click', fermerMenu));
     doc.addEventListener('keydown', (evenement) => {
-      if (evenement.key === 'Escape') fermerMenu();
+      if (evenement.key === 'Escape') {
+        fermerMenu();
+        fermerFeuille();
+      }
     });
+
+    // Alertes : « Voir toutes les alertes » sur téléphone
+    $('#bouton-alertes').addEventListener('click', () => {
+      const liste = $('#alertes-previsions');
+      const reduite = liste.classList.toggle('est-reduite');
+      const bouton = $('#bouton-alertes');
+      bouton.textContent = reduite ? 'Voir les ' + liste.children.length + ' alertes' : 'Réduire la liste';
+      bouton.setAttribute('aria-expanded', String(!reduite));
+    });
+
+    // Fiche salarié (téléphone) : fermeture par le voile
+    $('#voile-detail').addEventListener('click', fermerFeuille);
 
     // Boutons « Voir les données » : affichent le tableau sous le graphique
     doc.addEventListener('click', (evenement) => {
@@ -379,15 +392,18 @@
       if (ouvrir) construireTableau(zone, tableaux[cle]);
       zone.hidden = !ouvrir;
       bouton.setAttribute('aria-expanded', String(ouvrir));
-      bouton.textContent = ouvrir ? 'Masquer les données' : 'Voir les données';
+      libellerBoutonDonnees(bouton, ouvrir);
     });
 
     window.addEventListener('hashchange', appliquerAdresse);
 
     // Passage téléphone ⇄ grand écran : on redessine les graphiques de la page
     const auChangement = () => {
+      fermerFeuille();
       const page = PAGES.find((p) => p.id === pageCourante);
-      if (page && page.graphiques) page.graphiques();
+      if (!page) return;
+      if (page.graphiques) page.graphiques();
+      appliquerReplis(doc.getElementById('page-' + page.id));
     };
     if (ecranEtroit.addEventListener) ecranEtroit.addEventListener('change', auChangement);
     else if (ecranEtroit.addListener) ecranEtroit.addListener(auChangement);
@@ -429,8 +445,18 @@
       const zone = doc.getElementById('donnees-' + bouton.dataset.basculeTableau);
       if (zone) zone.hidden = true;
       bouton.setAttribute('aria-expanded', 'false');
-      bouton.textContent = 'Voir les données';
+      libellerBoutonDonnees(bouton, false);
     });
+  }
+
+  function libellerBoutonDonnees(bouton, ouvert) {
+    const texte = ouvert ? 'Masquer les données' : 'Voir les données';
+    if (bouton.classList.contains('bouton-donnees')) {
+      bouton.setAttribute('aria-label', texte);
+      bouton.title = texte;
+    } else {
+      bouton.textContent = texte;
+    }
   }
 
   // Les chiffres « montent » jusqu'à leur valeur (animation légère)
@@ -604,7 +630,7 @@
       },
       options: {
         indexAxis: 'y',
-        layout: { padding: { right: 92 } },
+        layout: { padding: { right: 48 } },
         scales: {
           x: { stacked: true, display: false, beginAtZero: true },
           y: { stacked: true, grid: { display: false }, border: { display: false }, ticks: { color: C.bleu900, font: { weight: '600' } } },
@@ -619,7 +645,7 @@
           },
           etiquettes: {
             interieur: (v) => fmt.entier(v),
-            texte: (v, i, indexJeu) => (indexJeu === 1 ? fmt.entier(d[i].effectif) + ' · ' + fmt.pourcentage(d[i].part, 0) : ''),
+            texte: (v, i, indexJeu) => (indexJeu === 1 ? fmt.entier(d[i].effectif) : ''),
           },
         },
       },
@@ -651,7 +677,7 @@
       },
       options: {
         indexAxis: 'y',
-        layout: { padding: { right: 104 } },
+        layout: { padding: { right: 62 } },
         scales: {
           x: { display: false, beginAtZero: true },
           y: { grid: { display: false }, border: { display: false }, ticks: { color: C.bleu900, font: { weight: '600' } } },
@@ -664,7 +690,7 @@
               label: (c) => ' ' + c.dataset.label + ESPACE + ': ' + fmt.entier(c.raw) + ' (' + fmt.pourcentage(part(c.dataIndex, c.datasetIndex)) + ')',
             },
           },
-          etiquettes: { texte: (v, i, indexJeu) => fmt.entier(v) + ' (' + fmt.pourcentage(part(i, indexJeu)) + ')' },
+          etiquettes: { texte: (v, i, indexJeu) => fmt.pourcentage(part(i, indexJeu)) },
         },
       },
     });
@@ -902,6 +928,11 @@
       $('.alerte__etiquette', element).textContent = a.etiquette;
       liste.appendChild(element);
     });
+    const bouton = $('#bouton-alertes');
+    liste.classList.add('est-reduite');
+    bouton.hidden = alertes.length <= 3;
+    bouton.textContent = 'Voir les ' + alertes.length + ' alertes';
+    bouton.setAttribute('aria-expanded', 'false');
   }
 
   function construireMultiples() {
@@ -910,6 +941,7 @@
     ORDRE_CATEGORIES.forEach((id, i) => {
       const carte = doc.createElement('article');
       carte.className = 'carte carte--multiple';
+      carte.dataset.onglet = categorieRH(id).court;
       carte.style.animationDelay = i * 50 + 'ms';
       carte.innerHTML = '<div class="multiple__entete"><h3 class="multiple__titre"></h3><span data-statut></span></div>' +
         '<p class="multiple__chiffres"></p>' +
@@ -1233,7 +1265,8 @@
     const initiales = (mots[0].charAt(0) + mots[mots.length - 1].charAt(0)).toUpperCase();
     zone.innerHTML =
       '<header class="detail__entete"><span class="avatar avatar--clair" aria-hidden="true"></span>' +
-      '<div><h2 class="detail__nom"></h2><p class="detail__poste"></p></div></header>' +
+      '<div><h2 class="detail__nom"></h2><p class="detail__poste"></p></div>' +
+      '<button type="button" class="bouton-icone detail__fermer" aria-label="Fermer la fiche"><svg class="icone" aria-hidden="true"><use href="#ico-fermer"></use></svg></button></header>' +
       '<div class="detail__score">' +
         '<div class="detail__score-ligne"><p class="detail__valeur"><span></span><small> / 100</small></p><span data-niveau></span></div>' +
         '<div class="jauge" aria-hidden="true"><span class="jauge__remplissage fond-' + s.niveau + '"></span>' +
@@ -1248,6 +1281,7 @@
         '<span>Aide à la décision&nbsp;: à discuter lors d’un entretien entre le salarié et son manager. Aucune décision automatique.</span></p>';
 
     $('.avatar', zone).textContent = initiales;
+    $('.detail__fermer', zone).addEventListener('click', fermerFeuille);
     $('.detail__nom', zone).textContent = s.nom;
     $('.detail__poste', zone).textContent = s.poste + ' · ' + categorieRH(s.categorie).nom + ' · matricule ' + s.id;
     $('.detail__valeur span', zone).textContent = s.score;
@@ -1279,7 +1313,24 @@
       ? 'Principaux facteurs de risque&nbsp;: ' + joindre(risques.map((c) => phraseFacteur(c.id, c.valeur, true))) + '.'
       : 'Principaux facteurs de fidélité&nbsp;: ' + joindre(fidelite.map((c) => phraseFacteur(c.id, c.valeur, false))) + '.';
 
-    if (defiler && window.innerWidth < 1200) zone.scrollIntoView({ behavior: reduireAnimations ? 'auto' : 'smooth', block: 'start' });
+    if (!defiler) return;
+    if (ecranEtroit.matches) ouvrirFeuille();
+    else if (window.innerWidth < 1200) zone.scrollIntoView({ behavior: reduireAnimations ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  // Volet « fiche salarié » qui monte du bas de l'écran (téléphone)
+  function ouvrirFeuille() {
+    $('#detail-risque').classList.add('est-ouvert');
+    $('#voile-detail').hidden = false;
+    doc.body.classList.add('feuille-ouverte');
+  }
+
+  function fermerFeuille() {
+    const detail = doc.getElementById('detail-risque');
+    if (detail) detail.classList.remove('est-ouvert');
+    const voile = doc.getElementById('voile-detail');
+    if (voile) voile.hidden = true;
+    doc.body.classList.remove('feuille-ouverte');
   }
 
   /* ------------------------------------------------------------------------
@@ -1515,15 +1566,30 @@
         if (classe) td.className = classe;
         return td;
       };
-      cellule(a.cible, 'Catégorie ciblée');
+      cellule(a.cible, 'Catégorie ciblée', 'meta');
       cellule(fmt.entier(a.effectif), 'Effectif concerné', 'effectif');
-      cellule(a.echeance, 'Échéance');
+      cellule(a.echeance, 'Échéance', 'meta');
       const priorite = tr.insertCell();
       priorite.dataset.libelle = 'Priorité';
       priorite.appendChild(creerPriorite(a.priorite));
-      cellule(a.responsable, 'Responsable');
+      cellule(a.responsable, 'Responsable', 'responsable');
     });
     placer('tableau-plan', table);
+
+    // Sur téléphone : d'abord les actions prioritaires, puis « Voir les N actions »
+    const prioritaires = actions.filter((a) => a.priorite === 'haute').length;
+    const bouton = $('#bouton-actions');
+    table.classList.add('est-reduit');
+    table.style.setProperty('--actions-visibles', prioritaires);
+    table.dataset.visibles = prioritaires;
+    bouton.hidden = actions.length <= prioritaires;
+    bouton.textContent = 'Voir les ' + actions.length + ' actions';
+    bouton.setAttribute('aria-expanded', 'false');
+    bouton.onclick = () => {
+      const reduit = table.classList.toggle('est-reduit');
+      bouton.textContent = reduit ? 'Voir les ' + actions.length + ' actions' : 'Réduire la liste';
+      bouton.setAttribute('aria-expanded', String(!reduit));
+    };
   }
 
   /* ------------------------------------------------------------------------
